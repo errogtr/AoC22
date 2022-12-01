@@ -1,11 +1,14 @@
 from itertools import groupby
 
-from erro import get_data_path
-
 
 if __name__ == "__main__":
-    with open(get_data_path(__file__)) as f:
+    with open(__file__.replace(".py", "_data")) as f:
         data = f.readlines()
 
+    calories_per_elf = [sum(map(int, g)) for k, g in groupby(data, key=lambda x: x != "\n") if k]
+
     # PART 1
-    print(max(sum(map(int, g)) for k, g in groupby(data, key=lambda x: x != "\n") if k))
+    print(max(calories_per_elf))
+
+    # PART 2
+    print(sum(sorted(calories_per_elf)[-3:]))
