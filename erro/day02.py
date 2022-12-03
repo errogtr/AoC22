@@ -6,4 +6,4 @@ if __name__ == "__main__":
     print(sum(ord(j) - ord("W") + (ord(j) - ord(i) - 1) % 3 * 3 for i, j in rounds))
 
     # PART 2
-    print(sum((ord(j) - 1) % 3 * 3 + (ord(j) + ord(i) - 1) % 3 + 1 for i, j in rounds))
+    print(sum(3 * (ord(j) - ord("X")) + (ord(j) + ord(i) - 1) % 3 + 1 for i, j in rounds))
