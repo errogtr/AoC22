@@ -1,11 +1,9 @@
-from string import ascii_letters
 from more_itertools import chunked
-
-CHR2NUM = {c: i for i, c in enumerate(ascii_letters, 1)}
 
 
 def get_priority(c):
-    return CHR2NUM[set.intersection(*map(set, c)).pop()]
+    item = set.intersection(*map(set, c)).pop()
+    return ord(item) - 96 if ord(item) > ord("Z") else ord(item) - 38
 
 
 if __name__ == "__main__":
