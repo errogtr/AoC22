@@ -1,13 +1,11 @@
-def get_range(r):
-    a, b = r.split("-")
-    return set(range(int(a), int(b) + 1))
+import re
 
 
 with open(__file__.replace(".py", "_data")) as f:
-    sections = [[get_range(y) for y in x.split(",")] for x in f.readlines()]
+    sections = [[int(y) for y in re.findall(r"\d+", x)] for x in f.readlines()]
 
 # PART 1
-print(sum((x <= y) or (y <= x) for x, y in sections))
+print(sum((a <= c and b >= d) or (c <= a and d >= b) for a, b, c, d in sections))
 
 # PART 2
-print(sum(len(x & y) > 0 for x, y in sections))
+print(sum(c <= b <= d or a <= d <= b for a, b, c, d in sections))
