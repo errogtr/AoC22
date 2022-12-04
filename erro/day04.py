@@ -4,9 +4,7 @@ def get_range(r):
 
 
 with open(__file__.replace(".py", "_data")) as f:
-    data = [x.split(",") for x in f.readlines()]
-
-sections = [[get_range(i) for i in x] for x in data]
+    sections = [[get_range(y) for y in x.split(",")] for x in f.readlines()]
 
 # PART 1
 print(sum((x <= y) or (y <= x) for x, y in sections))
