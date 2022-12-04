@@ -1,6 +1,6 @@
 def get_range(r):
-    start, end = map(int, r.split("-"))
-    return set(range(start, end + 1))
+    a, b = r.split("-")
+    return set(range(int(a), int(b) + 1))
 
 
 with open(__file__.replace(".py", "_data")) as f:
