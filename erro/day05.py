@@ -25,4 +25,3 @@ for num, initial, final in moves:
         move_crate(pos_2, final - 1, initial - 1, i - num)
 print("".join(x[-1] for x in pos_1))
 print("".join(x[-1] for x in pos_2))
-
