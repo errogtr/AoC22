@@ -18,10 +18,10 @@ for line in drawing[:-1]:
 moves = [list(map(int, re.findall(r"\d+", line))) for line in instructions]
 
 # PART 1 & 2
-pos_1, pos_2 = [deepcopy(crates) for _ in [1, 2]]
+pos9000, pos9001 = [deepcopy(crates) for _ in [1, 2]]
 for num, initial, final in moves:
     for i in range(num):
-        move_crate(pos_1, final - 1, initial - 1, -1)
-        move_crate(pos_2, final - 1, initial - 1, i - num)
-print("".join(x[-1] for x in pos_1))
-print("".join(x[-1] for x in pos_2))
+        move_crate(pos9000, final - 1, initial - 1, -1)
+        move_crate(pos9001, final - 1, initial - 1, i - num)
+print("".join(x[-1] for x in pos9000))
+print("".join(x[-1] for x in pos9001))
