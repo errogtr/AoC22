@@ -12,7 +12,7 @@ moves = [map(int, re.findall(r"\d+", line)) for line in instructions]
 # PART 1 & 2
 pos9000, pos9001 = [deepcopy(crates) for _ in [1, 2]]
 for num, initial, final in moves:
-    pos9000[final - 1] += pos9000[initial - 1][-num:][::-1]
+    pos9000[final - 1] += pos9000[initial - 1][:-num-1:-1]
     pos9000[initial - 1] = pos9000[initial - 1][:-num]
 
     pos9001[final - 1] += pos9001[initial - 1][-num:]
