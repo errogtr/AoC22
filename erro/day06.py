@@ -7,9 +7,6 @@ def get_message(data: str, length: int):
 with open(__file__.replace(".py", "_data")) as f:
     data = f.read()
 
-
-# PART 1
-print(get_message(data, length=4))
-
-# PART 2
-print(get_message(data, length=14))
+# PART 1 & 2
+for length in [4, 14]:
+    print(get_message(data, length))
