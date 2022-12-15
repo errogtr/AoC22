@@ -1,50 +1,30 @@
-from copy import copy, deepcopy
 from math import sqrt
 
 
-def distance(p, q):
-    return sqrt(sum((p[i] - q[i])**2 for i in range(len(p))))
+def update_rope(length: int, vectors: dict):
+    rope = [0j] * length
+    tail_positions = set()
+    for direction, steps in data:
+        for _ in range(int(steps)):
+            rope[0] += vectors[direction]
+            for n in range(1, len(rope)):
+                diff = rope[n - 1] - rope[n]
+                if abs(diff) > sqrt(2):
+                    if diff.real != 0:
+                        rope[n] += diff.real / abs(diff.real)
+                    if diff.imag != 0:
+                        rope[n] += complex(0, diff.imag) / abs(diff.imag)
+            tail_positions.add(rope[-1])
+    return tail_positions
 
 
 with open(__file__.replace(".py", "_data")) as f:
     data = [l.split() for l in f.read().splitlines()]
 
-vectors = {
-    "U": [0, 1],
-    "D": [0, -1],
-    "L": [-1, 0],
-    "R": [1, 0]
-}
+vectors = {"U": 1j, "D": -1j, "L": -1, "R": 1}
 
-head = [0, 0]
-tail = copy(head)
-tail_positions = set()
-for direction, steps in data:
-    for _ in range(int(steps)):
-        head = [head[i] + vectors[direction][i] for i in range(2)]
-        dist = [head[i] - tail[i] for i in range(2)]
-        for i in range(2):
-            if abs(dist[i]) == 2:
-                tail[i] += dist[i] // abs(dist[i])
-                if abs(dist[1 - i]) == 1:
-                    tail[1 - i] += dist[1 - i] // abs(dist[1 - i])
+# PART 1
+print(len(update_rope(2, vectors)))
 
-        tail_positions.add(tuple(tail))
-
-print(len(tail_positions))
-
-rope = [[0, 0] for _ in range(10)]
-tail_positions = set()
-for direction, steps in data:
-    for _ in range(int(steps)):
-        rope[0] = [rope[0][i] + vectors[direction][i] for i in range(2)]
-        for n in range(1, len(rope)):
-            dist = [rope[n - 1][i] - rope[n][i] for i in range(2)]
-            for i in range(2):
-                if abs(dist[i]) == 2:
-                    rope[n][i] += dist[i] // abs(dist[i])
-                    if abs(dist[1 - i]) == 1:
-                        rope[n][1 - i] += dist[1 - i] // abs(dist[1 - i])
-        tail_positions.add(tuple(rope[-1]))
-
-print(len(tail_positions))
+# PART 2
+print(len(update_rope(10, vectors)))
