@@ -33,3 +33,18 @@ for direction, steps in data:
 
 print(len(tail_positions))
 
+rope = [[0, 0] for _ in range(10)]
+tail_positions = set()
+for direction, steps in data:
+    for _ in range(int(steps)):
+        rope[0] = [rope[0][i] + vectors[direction][i] for i in range(2)]
+        for n in range(1, len(rope)):
+            dist = [rope[n - 1][i] - rope[n][i] for i in range(2)]
+            for i in range(2):
+                if abs(dist[i]) == 2:
+                    rope[n][i] += dist[i] // abs(dist[i])
+                    if abs(dist[1 - i]) == 1:
+                        rope[n][1 - i] += dist[1 - i] // abs(dist[1 - i])
+        tail_positions.add(tuple(rope[-1]))
+
+print(len(tail_positions))
