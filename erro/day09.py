@@ -1,10 +1,10 @@
 from math import sqrt
 
 
-def update_rope(length: int, vectors: dict):
+def update_rope(moves: list, length: int, vectors: dict):
     rope = [0j] * length
     tail_positions = set()
-    for direction, steps in data:
+    for direction, steps in moves:
         for _ in range(int(steps)):
             rope[0] += vectors[direction]
             for n in range(1, len(rope)):
@@ -19,12 +19,12 @@ def update_rope(length: int, vectors: dict):
 
 
 with open(__file__.replace(".py", "_data")) as f:
-    data = [l.split() for l in f.read().splitlines()]
+    moves = [l.split() for l in f.read().splitlines()]
 
 vectors = {"U": 1j, "D": -1j, "L": -1, "R": 1}
 
 # PART 1
-print(len(update_rope(2, vectors)))
+print(len(update_rope(moves, 2, vectors)))
 
 # PART 2
-print(len(update_rope(10, vectors)))
+print(len(update_rope(moves, 10, vectors)))
