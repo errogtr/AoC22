@@ -1,7 +1,7 @@
 from math import sqrt
 
 
-def update_rope(moves: list, length: int, vectors: dict):
+def move_tail(moves: list, length: int, vectors: dict):
     rope = [0j] * length
     tail_positions = set()
     for direction, steps in moves:
@@ -24,7 +24,7 @@ with open(__file__.replace(".py", "_data")) as f:
 vectors = {"U": 1j, "D": -1j, "L": -1, "R": 1}
 
 # PART 1
-print(len(update_rope(moves, 2, vectors)))
+print(len(move_tail(moves, 2, vectors)))
 
 # PART 2
-print(len(update_rope(moves, 10, vectors)))
+print(len(move_tail(moves, 10, vectors)))
