@@ -57,6 +57,5 @@ LCM = prod(x.div for x in monkeys_start)
 monkeys = deepcopy(monkeys_start)
 print(game(monkeys, 20, LCM, True))
 
-
 monkeys = deepcopy(monkeys_start)
 print(game(monkeys, 10000, LCM))
