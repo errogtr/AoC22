@@ -29,7 +29,7 @@ class Monkey:
 
     @staticmethod
     def get_dividend(line: str) -> int:
-        return int(re.search(f"(\d+)", line).group(1))
+        return int(re.search(r"(\d+)", line).group(1))
 
     def get_test(self, text: str) -> Callable:
         dst_monkeys = [int(x) for x in re.findall(r"\d", text)]
