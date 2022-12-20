@@ -22,6 +22,8 @@ def climb(start, end, heightmap):
         _, length, start = heapq.heappop(queue)
     return length
 
+
+# INPUT PARSING
 with open(__file__.replace(".py", "_data")) as f:
     heightmap = dict()
     min_height_pos = list()
@@ -37,6 +39,8 @@ with open(__file__.replace(".py", "_data")) as f:
                     min_height_pos.append((x, y))
             heightmap[(x, y)] = ord(h)
 
+# PART 1
 print(climb(start, end, heightmap))
 
+# PART 2
 print(min(climb(p, end, heightmap) for p in min_height_pos))
