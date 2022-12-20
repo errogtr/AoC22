@@ -54,8 +54,10 @@ with open(__file__.replace(".py", "_data")) as f:
 
 LCM = prod(x.div for x in monkeys_start)
 
+# PART 1
 monkeys = deepcopy(monkeys_start)
 print(game(monkeys, 20, LCM, True))
 
+# PART 2
 monkeys = deepcopy(monkeys_start)
 print(game(monkeys, 10000, LCM))
